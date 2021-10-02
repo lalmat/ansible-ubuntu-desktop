@@ -8,7 +8,7 @@ This playbook install my prefered tools available under Ubuntu.
 - [Oh-My-Zsh](https://ohmyz.sh/) - with Agnoster theme by default
 - [Gnome Desktop](https://www.gnome.org/) - with dark theme enabled
 - [Tilix](https://gnunn1.github.io/tilix-web/) - as default terminal
-- [Chromium](https://fr.wikipedia.org/wiki/Chromium)
+- [Chromium](https://fr.wikipedia.org/wiki/Chromium) - Lite Google Chrome browser
 
 ## Requirements
 
