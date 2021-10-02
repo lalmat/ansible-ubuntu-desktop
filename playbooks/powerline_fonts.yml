@@ -1,0 +1,14 @@
+- name: POWERLINE-FONTS - Check if installed
+  become_user: "{{ansible_env.SUDO_USER}}"
+  stat:
+    path: ~/.fonts
+  register: powerfonts_path
+
+
+- name: POWERLINE-FONTS - Install fonts
+  become_user: "{{ansible_env.SUDO_USER}}"
+  when: not powerfonts_path.stat.exists  
+  shell: |
+    git clone https://github.com/powerline/fonts.git ~/.fonts --depth=1
+    cd ~/.fonts
+    ./install.sh
