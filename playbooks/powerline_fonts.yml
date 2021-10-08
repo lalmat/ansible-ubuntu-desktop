@@ -1,4 +1,5 @@
 - name: POWERLINE-FONTS - Check if installed
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   stat:
     path: ~/.fonts
@@ -6,6 +7,7 @@
 
 
 - name: POWERLINE-FONTS - Install fonts
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   when: not powerfonts_path.stat.exists  
   shell: |
