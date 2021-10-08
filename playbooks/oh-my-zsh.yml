@@ -1,10 +1,12 @@
 - name: OH-MY-ZSH - Check if installed
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   stat:
     path: /home/{{ansible_env.SUDO_USER}}/.oh-my-zsh
   register: ohmyzsh
 
 - name: OH-MY-ZSH - Download  installer
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   when: not ohmyzsh.stat.exists  
   get_url: 
@@ -12,6 +14,7 @@
     dest: /home/{{ansible_env.SUDO_USER}}/oh-my-zsh-installer.sh
 
 - name: OH-MY-ZSH - Run installer
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   when: not ohmyzsh.stat.exists  
   shell: /usr/bin/bash /home/{{ansible_env.SUDO_USER}}/oh-my-zsh-installer.sh
@@ -20,10 +23,12 @@
     RUNZSH: no
 
 - name: OH-MY-ZSH - Remove the installer
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   when: not ohmyzsh.stat.exists  
   file: path=/home/{{ansible_env.SUDO_USER}}/oh-my-zsh-installer.sh state=absent
 
 - name: OH-MY-ZSH Change theme to agnoster
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   shell: /usr/bin/sed -i 's/"robbyrussell"/"agnoster"/g' ~/.zshrc
