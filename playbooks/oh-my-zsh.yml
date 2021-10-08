@@ -1,7 +1,7 @@
 - name: OH-MY-ZSH - Check if installed
   become_user: "{{ansible_env.SUDO_USER}}"
   stat:
-    path: ~/.oh-my-zsh
+    path: /home/{{ansible_env.SUDO_USER}}/.oh-my-zsh
   register: ohmyzsh
 
 - name: OH-MY-ZSH - Download  installer
