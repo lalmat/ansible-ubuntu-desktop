@@ -9,12 +9,12 @@
   when: not ohmyzsh.stat.exists  
   get_url: 
     url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh 
-    dest: ~/oh-my-zsh-installer.sh
+    dest: /home/{{ansible_env.SUDO_USER}}/oh-my-zsh-installer.sh
 
 - name: OH-MY-ZSH - Run installer
   become_user: "{{ansible_env.SUDO_USER}}"
   when: not ohmyzsh.stat.exists  
-  shell: /usr/bin/bash ~/oh-my-zsh-installer.sh
+  shell: /usr/bin/bash /home/{{ansible_env.SUDO_USER}}/oh-my-zsh-installer.sh
   environment:
     CHSH: no
     RUNZSH: no
@@ -22,7 +22,7 @@
 - name: OH-MY-ZSH - Remove the installer
   become_user: "{{ansible_env.SUDO_USER}}"
   when: not ohmyzsh.stat.exists  
-  file: path=~/oh-my-zsh-installer.sh state=absent
+  file: path=/home/{{ansible_env.SUDO_USER}}/oh-my-zsh-installer.sh state=absent
 
 - name: OH-MY-ZSH Change theme to agnoster
   become_user: "{{ansible_env.SUDO_USER}}"
