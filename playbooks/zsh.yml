@@ -1,5 +1,5 @@
 - name : ZSH - Install package
-  become: true
+  become: yes
   apt:
     state: latest
     name: zsh
