@@ -15,6 +15,7 @@
     enabled: yes
 
 - name: GNOME - Wayland QT BugFix
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   lineinfile:
     dest: "/home/{{ansible_env.SUDO_USER}}/.zshrc"
@@ -22,6 +23,7 @@
     owner: "{{ansible_env.SUDO_USER}}"
 
 - name: GNOME - Configuration - Clock shown seconds
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/clock-show-seconds"
@@ -29,6 +31,7 @@
     state: present
 
 - name: GNOME - Configuration - Clock shown weekday
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/clock-show-weekday"
@@ -36,6 +39,7 @@
     state: present
 
 - name: GNOME - Configuration - Theme Yary Dark
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
@@ -43,6 +47,7 @@
     state: present
 
 - name: GNOME - Configuration - Icon Theme Yaru
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/icon-theme"
@@ -50,6 +55,7 @@
     state: present
 
 - name: GNOME - Configuration - Cursor Theme Yaru
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/cursor-theme"
@@ -57,6 +63,7 @@
     state: present
 
 - name: GNOME - Configuration - Disable animations
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/enable-animations"
@@ -64,6 +71,7 @@
     state: present
 
 - name: GNOME - Configuration - UI Font
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/font-name"
@@ -71,6 +79,7 @@
     state: present
 
 - name: GNOME - Configuration - Document Font
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/document-font-name"
@@ -78,6 +87,7 @@
     state: present
 
 - name: GNOME - Configuration - Terminal Font
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
@@ -85,6 +95,7 @@
     state: present
 
 - name: GNOME - Nautilus - Icon Size
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/nautilus/icon-view/default-zoom-level"
@@ -92,6 +103,7 @@
     state: present
 
 - name: GNOME - Nautilus - Icon Size
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/nautilus/preferences/default-folder-viewer"
@@ -99,6 +111,7 @@
     state: present
 
 - name: GNOME - Shell - Launcher
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/shell/favorite-apps"
@@ -106,6 +119,7 @@
     state: present
 
 - name: GNOME - Shell - Extensions
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/org/gnome/shell/enabled-extensions"
