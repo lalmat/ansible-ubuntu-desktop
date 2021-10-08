@@ -1,5 +1,5 @@
 - name : TILIX - Package Installation
-  become: true
+  become: yes
   apt:
     pkg:
       - tilix
@@ -7,12 +7,13 @@
     state: latest
 
 - name: TILIX - Set as default terminal emulator
-  become: true
+  become: yes
   command: "/usr/bin/update-alternatives --set x-terminal-emulator /usr/bin/tilix.wrapper"
   register: command_result
   changed_when: "command_result.stdout != ''"
 
 - name: TILIX - ZSH configuration fix
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   lineinfile:
     dest: "/home/{{ansible_env.SUDO_USER}}/.zshrc"
@@ -20,6 +21,7 @@
     owner: "{{ansible_env.SUDO_USER}}"
 
 - name: TILIX - Option - Tabs on top
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/tab-position"
@@ -27,6 +29,7 @@
     state: present
 
 - name: TILIX - Option - Title Style
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/terminal-title-style"
@@ -34,6 +37,7 @@
     state: present
 
 - name: TILIX - Option - Dark Theme
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/theme-variant"
@@ -41,6 +45,7 @@
     state: present
 
 - name: TILIX - Option - No toolbars
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/window-style"
@@ -48,32 +53,37 @@
     state: present 
 
 - name: TILIX - Default Profile - Find UUID
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   shell: gsettings get com.gexperts.Tilix.ProfilesList default | awk '{ print substr( $0, 2, length($0)-2 ) }'
   register: tilix_uuid_profile
 
 - name: TILIX - Default Profile - Set Transparency
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/profiles/{{tilix_uuid_profile.stdout}}/background-transparency-percent"
     value: "10"
     state: present 
 
-- name: TILIX - Default Profile - Set Transparency
+- name: TILIX - Default Profile - Dim Transparency
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/profiles/{{tilix_uuid_profile.stdout}}/dim-transparency-percent"
     value: "10"
     state: present 
 
-- name: TILIX - Default Profile - Set Transparency
+- name: TILIX - Default Profile - Set Font
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/profiles/{{tilix_uuid_profile.stdout}}/font"
     value: "'Ubuntu Mono derivative Powerline 13'"
     state: present 
 
-- name: TILIX - Default Profile - Set Transparency
+- name: TILIX - Default Profile - Set System Font
+  become: yes
   become_user: "{{ansible_env.SUDO_USER}}"
   dconf:
     key: "/com/gexperts/Tilix/profiles/{{tilix_uuid_profile.stdout}}/use-system-font"
